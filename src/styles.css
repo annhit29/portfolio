@@ -8,7 +8,6 @@
   --muted: #60685e;
   --line: #dfe4dc;
   --link: #49634c;
-  --accent-soft: #dfe9d9;
   --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
 }
 * {
@@ -85,20 +84,10 @@ summary:focus-visible {
 }
 .identity {
   position: sticky;
-  top: max(70px, calc(50vh - 265px));
+  top: max(70px, calc(50vh - 150px));
   text-align: center;
-  margin-top: 175px;
+  margin-top: 153px;
   padding-bottom: 40px;
-}
-.identity-home {
-  display: block;
-  width: 180px;
-  margin: 0 auto 24px;
-  color: #526b4e;
-}
-.identity-mark {
-  display: block;
-  width: 100%;
 }
 h1 {
   font-size: 28px;
@@ -262,7 +251,6 @@ h2 {
 }
 .project-heading {
   position: relative;
-  padding-right: 44px;
   margin-bottom: 13px;
 }
 h3 {
@@ -276,9 +264,7 @@ h3 {
   color: var(--muted);
 }
 .project-heading .entry-date {
-  position: absolute;
-  right: 0;
-  top: 5px;
+  margin-bottom: 5px;
 }
 .project-kind {
   font: 10px/1.7 var(--mono);
@@ -476,6 +462,11 @@ details[open] > summary .notes-indicator::after {
 .education p {
   font-size: 12px;
 }
+.education .education-coursework {
+  margin-top: 7px;
+  font-size: 11px;
+  color: var(--muted);
+}
 .education .education-detail,
 .education .entry-date {
   font-size: 11px;
@@ -506,6 +497,9 @@ details[open] > summary .notes-indicator::after {
 .contact p {
   font-size: 13px;
   margin-top: 12px;
+}
+.contact .contact-availability {
+  font-weight: 600;
 }
 .contact > a {
   display: inline-block;
@@ -553,10 +547,6 @@ details[open] > summary .notes-indicator::after {
     margin-top: 45px;
     padding-bottom: 0;
   }
-  .identity-home {
-    width: 115px;
-    margin-bottom: 14px;
-  }
   h1 {
     font-size: 27px;
   }
@@ -594,12 +584,6 @@ details[open] > summary .notes-indicator::after {
   }
   .project-body {
     padding: 20px;
-  }
-  .project-heading {
-    padding-right: 50px;
-  }
-  .project-heading .entry-date {
-    position: absolute;
   }
   .section-heading {
     align-items: flex-start;

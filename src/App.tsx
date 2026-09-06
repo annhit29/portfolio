@@ -26,45 +26,6 @@ function ExternalLink({
   );
 }
 
-function IdentityMark() {
-  return (
-    <svg
-      className="identity-mark"
-      viewBox="0 0 180 150"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M26 110 55 42l34 68 34-68 30 68"
-        stroke="currentColor"
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m43 110 28-49 34 49 32-49"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M24 125c34-9 83-9 132 0"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <circle cx="143" cy="28" r="8" fill="var(--accent-soft)" />
-      <path
-        d="M143 15v7m0 12v7m-13-13h7m12 0h7"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
 function ProjectArtwork({ id }: { id: string }) {
   return (
     <div className={`project-art project-art--${id}`} aria-hidden="true">
@@ -333,13 +294,6 @@ export default function App() {
       </a>
       <div className="portfolio-layout" id="top">
         <header className="identity">
-          <a
-            className="identity-home"
-            href="#top"
-            aria-label="Wei-En Hsieh, back to top"
-          >
-            <IdentityMark />
-          </a>
           <h1>{profile.name}</h1>
           <p className="identity-role">{profile.role}</p>
           <p className="identity-focus">{profile.focus}</p>
@@ -375,14 +329,12 @@ export default function App() {
               id="bio"
               aria-labelledby="intro-title"
             >
-              <h2 id="intro-title">
-                bio
-              </h2>
+              <h2 id="intro-title">Bio</h2>
               <div className="bio-content">
                 <p className="intro-greeting">Hi, I’m Wei-En.</p>
                 <p className="intro-text">{profile.introduction}</p>
                 <p className="bio-interests">
-                  Currently curious about{' '}
+                  Curious about{' '}
                   {profile.interests.map((interest, index) => (
                     <span key={interest}>
                       {index > 0 &&
@@ -403,10 +355,8 @@ export default function App() {
               aria-labelledby="projects-heading"
             >
               <div className="section-heading">
-                <h2 id="projects-heading">
-                  projects
-                </h2>
-                <span className="section-aside">Selected work / 2024–2026</span>
+                <h2 id="projects-heading">Projects</h2>
+                <span className="section-aside">Selected work</span>
               </div>
               <div className="project-grid">
                 {projects.map((project) => (
@@ -420,9 +370,7 @@ export default function App() {
               className="section"
               aria-labelledby="experience-heading"
             >
-              <h2 id="experience-heading">
-                experience
-              </h2>
+              <h2 id="experience-heading">Experience</h2>
               {experience.map((job) => (
                 <article className="experience-entry" key={job.company}>
                   <div>
@@ -450,9 +398,7 @@ export default function App() {
               className="section about"
               aria-labelledby="about-heading"
             >
-              <h2 id="about-heading">
-                about
-              </h2>
+              <h2 id="about-heading">More about me</h2>
               <div className="about-columns">
                 <div className="about-personal">
                   <p>{profile.about}</p>
@@ -476,6 +422,7 @@ export default function App() {
                       <h4>{item.school}</h4>
                       <p>{item.degree}</p>
                       <p className="education-detail">{item.detail}</p>
+                      <p className="education-coursework">{item.coursework}</p>
                       <p className="entry-date">{item.period}</p>
                     </article>
                   ))}
@@ -500,9 +447,8 @@ export default function App() {
             </section>
 
             <section className="contact" aria-labelledby="contact-heading">
-              <h2 id="contact-heading">
-                contact
-              </h2>
+              <h2 id="contact-heading">Contact</h2>
+              <p className="contact-availability">{profile.availability}</p>
               <p>Have something in mind? I’d be happy to hear from you.</p>
               <a href={`mailto:${profile.email}`}>{profile.email}</a>
             </section>

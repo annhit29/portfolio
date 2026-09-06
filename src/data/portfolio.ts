@@ -21,7 +21,8 @@ export const profile = {
   description:
     'Wei-En Hsieh, software engineer and MSc Cyber Security student at ETH Zürich. Selected work in privacy enforcement, performance optimization, and application development.',
   introduction:
-    'I’m a master’s student in Cyber Security at ETH Zürich. I studied Computer Science at EPFL before that. My recent projects involve file-system privacy policies, C/C++ optimization, and Android development.',
+    'I’m a master’s student in Cyber Security at ETH Zürich, with a background in Computer Science from EPFL. I build software for privacy enforcement, workflow automation, and applications, with a focus on how systems behave in practice.',
+  availability: 'Available full-time from July 2027 for 13–17 weeks.',
   email: 'ann20010929@gmail.com',
   github: 'https://github.com/annhit29',
   linkedin: 'https://www.linkedin.com/in/wei-en-hsieh/',
@@ -32,9 +33,9 @@ export const profile = {
     'Privacy engineering',
   ],
   about:
-    'At EPFL, I helped 40+ students develop web and mobile prototypes as a teaching assistant for Human-Computer Interaction.',
+    'My background spans software engineering and security, from full-stack development for recycling factories to telecom automation and file-system privacy policies. At ETH Zürich, I’m also pursuing a minor in Data Management Systems.',
   personal:
-    'I also volunteered at the Paris 2024 Olympic and Paralympic Games, working in sport information and athlete operations for Marathon and Table Tennis.',
+    'From July to September 2024, I volunteered in Sport Info & Administration at the Paris Olympic and Paralympic Games. I directed athlete operations for Marathon and Table Tennis, escorted medalists to the stage, and coordinated on-time podium ceremonies.',
   languages: [
     { name: 'Mandarin', level: 'Native' },
     { name: 'French', level: 'Bilingual' },
@@ -47,13 +48,13 @@ export const projects: Project[] = [
   {
     id: 'gdprfs',
     category: 'Security engineering / Research',
-    date: '2025–2026',
+    date: 'Sep 2025 — Apr 2026',
     title: 'GDPRFS',
     summary:
       'A FUSE file system that checks privacy policies when applications access files. The applications don’t need to be modified.',
     contribution:
-      'I built the file system, added page- and row-level redaction when consent is revoked, and wrote Lex mappings between file-system events and GDPR concepts.',
-    technologies: ['Python', 'FUSE', 'SQL', 'JavaScript'],
+      'I built the file system, added page- and row-level redaction when consent is revoked, and wrote Lex mappings between file-system events and GDPR concepts. I co-authored “Lex: Turning Laws into Enforceable Security Policies,” accepted at ACM CCS 2026, and contributed the GDPRFS case study.',
+    technologies: ['Python', 'FUSE', 'Flask', 'SQLAlchemy'],
     metric: '0–80 ms',
     metricLabel: 'reported enforcement overhead',
     metricContext: 'Across 100–10,000 files. Excludes LLM inference.',
@@ -76,7 +77,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Research contribution',
-        text: 'Contributed the GDPRFS case study to research accepted at ACM CCS 2026, as listed in my résumé.',
+        text: 'Co-authored “Lex: Turning Laws into Enforceable Security Policies,” accepted at ACM CCS 2026, and contributed the GDPRFS case study.',
       },
     ],
     evidence: [
@@ -89,16 +90,17 @@ export const projects: Project[] = [
   {
     id: 'texture',
     category: 'Systems / Performance',
-    date: '2025',
+    date: 'Feb — Jun 2025',
     title: 'Texture synthesis',
     summary:
-      'A C/C++ texture synthesis project, optimized on Linux using AVX intrinsics.',
+      'A texture synthesis algorithm in C, optimized on Linux using AVX intrinsics.',
     contribution:
       'I worked on the AVX optimizations and automated profiling and benchmarks with perf to find bottlenecks.',
-    technologies: ['C / C++', 'AVX', 'Linux', 'perf'],
+    technologies: ['C', 'AVX', 'Linux', 'perf'],
     metric: '13×',
     metricLabel: 'reported speedup',
-    metricContext: 'Project baseline comparison; configuration-specific.',
+    metricContext:
+      '7+ operations per CPU cycle. Speedup over the project baseline.',
     repository: {
       url: 'https://github.com/annhit29/TextureSynthesisAlgoOptimization/tree/timing',
       available: true,
@@ -123,16 +125,17 @@ export const projects: Project[] = [
   {
     id: 'wanderpals',
     category: 'Application engineering / Team project',
-    date: '2024',
+    date: 'Feb — Jun 2024',
     title: 'WanderPals',
     summary:
       'An Android app for planning trips with a group, built as a team project at EPFL.',
     contribution:
-      'My work covered Firebase backend services, automated tests, and the CI/CD pipelines.',
-    technologies: ['Kotlin', 'Firebase', 'CI/CD', 'Android'],
+      'I built Firebase backend services for authentication, payments, data synchronization, and group coordination, and automated unit and Android integration tests through GitHub Actions.',
+    technologies: ['Kotlin', 'Jetpack Compose', 'Firebase', 'GitHub Actions'],
     metric: '≈90%',
     metricLabel: 'automated test coverage',
-    metricContext: 'Reported project coverage, not an uptime measurement.',
+    metricContext:
+      'Unit and Android integration tests automated through GitHub Actions.',
     repository: {
       url: 'https://github.com/WanderPals/WanderPals',
       available: true,
@@ -164,12 +167,26 @@ export const enforcementFlow = [
 
 export const experience = [
   {
+    company: 'ETH Zürich · Information Security Group',
+    role: 'Incoming Research Assistant',
+    period: 'Oct 2026 — Feb 2027',
+    location: 'Zurich, Switzerland',
+    technologies: 'Python',
+    points: [
+      'Selected to build an LLM-powered pipeline for automated Python instrumentation and compliance auditing.',
+    ],
+  },
+  {
     company: 'Bouygues Telecom',
     role: 'Automation Project Manager (Software Engineering)',
     period: 'Mar — Sep 2026',
     location: 'Paris, France',
-    technologies: 'Python · Camunda · BPMN',
-    points: [],
+    technologies: 'Python · Camunda · BPMN · REST APIs',
+    points: [
+      'Automated an end-to-end Camunda workflow handling 30–50 mobile-network complaints per day, leaving only 2 manual exception paths.',
+      'Orchestrated 4 APIs with 15 calls per complaint, retries, reusable components, and Gemini-based report analysis.',
+      'Owned delivery from telecom-expert requirements to production, translating them into validated BPMN workflows.',
+    ],
   },
   {
     company: 'WasteFlow',
@@ -178,18 +195,20 @@ export const experience = [
     location: 'Lausanne, Switzerland',
     technologies: 'React · Node.js · TypeScript · SQL',
     points: [
-      'Built a recycling-factory data application evaluated by 10+ SMEs, with dashboards for machine data and operational analysis.',
-      'Added features and streamlined deployment pipelines with GitHub Actions.',
+      'Built a React/Node.js platform for 25+ recycling-factory machines, surfacing machine failures to operators.',
+      'Partnered with 10+ domain experts to refine requirements and validate the platform against factory workflows.',
+      'Implemented interactive dashboards to analyze machine performance and identify operational patterns.',
     ],
   },
   {
     company: 'EPFL',
-    role: 'Teaching Assistant · Human-Computer Interaction',
+    role: 'Teaching Assistant · Human-Computer Interaction, Linear Algebra & Mechanics',
     period: 'Feb — Jun 2024',
     location: 'Lausanne, Switzerland',
-    technologies: 'Prototyping · Figma · Frontend integration',
+    technologies: 'UI/UX · Web & mobile prototyping · Problem solving',
     points: [
-      'Supervised 40+ students developing web and mobile UI/UX prototypes, and contributed to specifications and frontend integration.',
+      'Mentored 40+ HCI students building web and mobile UI/UX prototypes, reviewing functionality, usability, and implementation.',
+      'Taught and supported students in Linear Algebra and Mechanics through exercises and problem solving.',
     ],
   },
 ];
@@ -199,25 +218,28 @@ export const education = [
     school: 'ETH Zürich',
     degree: 'MSc Cyber Security',
     detail: 'Minor in Data Management Systems',
-    period: '2024 — Expected Feb 2028',
+    coursework:
+      'Advanced Systems Lab, Cloud Computing Architecture, Security Engineering',
+    period: 'Sep 2024 — Expected Feb 2028',
   },
   {
     school: 'EPFL',
     degree: 'BSc Computer Science',
-    detail: 'Algorithms, operating systems & concurrency',
-    period: '2021 — 2024',
+    detail: 'Lausanne, Switzerland',
+    coursework:
+      'Algorithms, Operating Systems, Parallelism and Concurrency, System Programming',
+    period: 'Sep 2021 — Jul 2024',
   },
 ];
 
 export const skills = [
-  { area: 'Systems & performance', items: 'C / C++, Python, Linux, AVX, perf' },
   {
-    area: 'Security & data',
-    items: 'FUSE, runtime policies, SQL, privacy enforcement',
+    area: 'Programming',
+    items: 'Python, C, C++, Java, JavaScript, TypeScript, Kotlin, SQL',
   },
   {
-    area: 'Applications & delivery',
+    area: 'Technologies',
     items:
-      'TypeScript, React, Node.js, Kotlin, Firebase, GitHub Actions, Docker',
+      'Linux/Unix, Docker, Git, GitHub Actions, Bash, React.js, Node.js, Flask, MySQL, Firebase',
   },
 ];
