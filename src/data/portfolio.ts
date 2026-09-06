@@ -172,7 +172,7 @@ export const experience = [
   {
     company: 'EPFL',
     role: 'Teaching Assistant · Human-Computer Interaction, Linear Algebra & Mechanics',
-    period: 'Feb — Jun 2024',
+    period: 'Sep 2022 — Jun 2024',
     location: 'Lausanne, Switzerland',
     technologies: 'UI/UX · Web & mobile prototyping · Problem solving',
     points: [
