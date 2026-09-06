@@ -21,21 +21,19 @@ export const profile = {
   description:
     'Wei-En Hsieh, software engineer and MSc Cyber Security student at ETH Zürich. Selected work in privacy enforcement, performance optimization, and application development.',
   introduction:
-    'I’m a master’s student in Cyber Security at ETH Zürich, with a background in Computer Science from EPFL. I build software for privacy enforcement, workflow automation, and applications, with a focus on how systems behave in practice.',
-  availability: 'Available full-time from July 2027 for 13–17 weeks.',
+    'I build software for privacy enforcement, workflow automation, and applications, with a focus on how systems behave in practice.',
+  // availability: 'Available full-time from July 2027 for 13–17 weeks.',
   email: 'ann20010929@gmail.com',
   github: 'https://github.com/annhit29',
   linkedin: 'https://www.linkedin.com/in/wei-en-hsieh/',
   resumeFile: 'resume.pdf',
   interests: [
     'LLM security',
-    'Site reliability engineering',
-    'Privacy engineering',
+    'site reliability engineering',
+    'privacy engineering',
   ],
-  about:
-    'My background spans software engineering and security, from full-stack development for recycling factories to telecom automation and file-system privacy policies. At ETH Zürich, I’m also pursuing a minor in Data Management Systems.',
-  personal:
-    'From July to September 2024, I volunteered in Sport Info & Administration at the Paris Olympic and Paralympic Games. I directed athlete operations for Marathon and Table Tennis, escorted medalists to the stage, and coordinated on-time podium ceremonies.',
+  // personal:
+    // 'From July to September 2024, I volunteered in Sport Info & Administration at the Paris Olympic and Paralympic Games.',
   languages: [
     { name: 'Mandarin', level: 'Native' },
     { name: 'French', level: 'Bilingual' },
@@ -65,7 +63,7 @@ export const projects: Project[] = [
     details: [
       {
         title: 'Implementation',
-        text: 'Place enforcement at the FUSE boundary so applications can keep their existing file-access behavior. EnfGuard evaluates policy events and the enforcement layer applies the result.',
+        text: 'EnfGuard evaluates policy events, and the enforcement layer applies the result: allow access, suppress it, or redact content.',
       },
       {
         title: 'Where the LLM fits',
@@ -73,11 +71,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Benchmark context',
-        text: 'The 0–80 ms range is reported in my résumé and excludes LLM inference. The repository also reports multi-step workflow timings; those are a different measurement and should not be treated as equivalent or as an end-to-end latency guarantee.',
-      },
-      {
-        title: 'Research contribution',
-        text: 'Co-authored “Lex: Turning Laws into Enforceable Security Policies,” accepted at ACM CCS 2026, and contributed the GDPRFS case study.',
+        text: 'The repository also measures multi-step workflows separately from the enforcement overhead shown above.',
       },
     ],
     evidence: [
@@ -92,8 +86,7 @@ export const projects: Project[] = [
     category: 'Systems / Performance',
     date: 'Feb — Jun 2025',
     title: 'Texture synthesis',
-    summary:
-      'A texture synthesis algorithm in C, optimized on Linux using AVX intrinsics.',
+    summary: 'A project focused on speeding up CPU-based texture synthesis.',
     contribution:
       'I worked on the AVX optimizations and automated profiling and benchmarks with perf to find bottlenecks.',
     technologies: ['C', 'AVX', 'Linux', 'perf'],
@@ -107,12 +100,8 @@ export const projects: Project[] = [
     },
     details: [
       {
-        title: 'Implementation',
-        text: 'Use profiling to guide optimization, then apply AVX intrinsics to CPU computation. The project retains a baseline and successive optimization versions for comparison.',
-      },
-      {
         title: 'Measurement & correctness',
-        text: 'The repository documents timing, operation counting, and comparing generated images against baseline output. My résumé reports 13× speedup and 7+ operations per cycle; it does not specify the exact hardware, compiler, or input for those figures.',
+        text: 'Successive optimization versions are compared with a retained baseline using timing, operation counting, and generated-image comparisons to check correctness.',
       },
     ],
     evidence: [
@@ -130,7 +119,7 @@ export const projects: Project[] = [
     summary:
       'An Android app for planning trips with a group, built as a team project at EPFL.',
     contribution:
-      'I built Firebase backend services for authentication, payments, data synchronization, and group coordination, and automated unit and Android integration tests through GitHub Actions.',
+      'Features and services for authentication, payments, data synchronization, and group coordination.',
     technologies: ['Kotlin', 'Jetpack Compose', 'Firebase', 'GitHub Actions'],
     metric: '≈90%',
     metricLabel: 'automated test coverage',
@@ -140,29 +129,9 @@ export const projects: Project[] = [
       url: 'https://github.com/WanderPals/WanderPals',
       available: true,
     },
-    details: [
-      {
-        title: 'My part in the team',
-        text: 'My contributions focused on backend services and delivery pipelines, alongside automated testing. WanderPals is a team project; the full application reflects the work of multiple contributors.',
-      },
-      {
-        title: 'Test coverage',
-        text: 'Automated checks help catch regressions during development. Approximately 90% coverage describes the code exercised by tests, rather than production availability or proof that every behavior is correct.',
-      },
-    ],
-    evidence: [
-      {
-        label: 'Project architecture & source',
-        url: 'https://github.com/WanderPals/WanderPals#readme',
-      },
-    ],
+    details: [],
+    evidence: [],
   },
-];
-
-export const enforcementFlow = [
-  { label: 'Application', detail: 'Existing file access' },
-  { label: 'FUSE + policies', detail: 'Intercept & evaluate' },
-  { label: 'Enforced result', detail: 'Allow, suppress, or redact' },
 ];
 
 export const experience = [

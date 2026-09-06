@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import {
   education,
-  enforcementFlow,
   experience,
   profile,
   projects,
@@ -249,37 +248,27 @@ function ProjectEntry({ project }: { project: Project }) {
               <span>Repository not publicly available</span>
             )}
           </div>
-          <details>
-            <summary>
-              Technical notes
-              <span className="notes-indicator" aria-hidden="true" />
-            </summary>
-            <div className="engineering-notes">
-              {project.details.map((detail) => (
-                <div key={detail.title}>
-                  <h4>{detail.title}</h4>
-                  <p>{detail.text}</p>
-                </div>
-              ))}
-              {project.id === 'gdprfs' && (
-                <figure className="enforcement-flow">
-                  <figcaption>File-access flow, simplified</figcaption>
-                  <ol>
-                    {enforcementFlow.map((step) => (
-                      <li key={step.label}>
-                        <strong>{step.label}.</strong> {step.detail}.
-                      </li>
-                    ))}
-                  </ol>
-                </figure>
-              )}
-              {project.evidence.map((link) => (
-                <ExternalLink key={link.url} href={link.url}>
-                  {link.label}
-                </ExternalLink>
-              ))}
-            </div>
-          </details>
+          {project.details.length > 0 && (
+            <details>
+              <summary>
+                Technical notes
+                <span className="notes-indicator" aria-hidden="true" />
+              </summary>
+              <div className="engineering-notes">
+                {project.details.map((detail) => (
+                  <div key={detail.title}>
+                    <h4>{detail.title}</h4>
+                    <p>{detail.text}</p>
+                  </div>
+                ))}
+                {project.evidence.map((link) => (
+                  <ExternalLink key={link.url} href={link.url}>
+                    {link.label}
+                  </ExternalLink>
+                ))}
+              </div>
+            </details>
+          )}
         </div>
       </div>
     </article>
@@ -321,7 +310,7 @@ export default function App() {
             <span aria-hidden="true">/</span>
             <a href="#experience">Experience</a>
             <span aria-hidden="true">/</span>
-            <a href="#about">About</a>
+            <a href="#education">Education</a>
           </nav>
           <main id="main" tabIndex={-1}>
             <section
@@ -346,6 +335,15 @@ export default function App() {
                   ))}
                   .
                 </p>
+                {/* <p className="bio-personal">{profile.personal}</p> */}
+                <dl className="languages">
+                  {profile.languages.map((language) => (
+                    <div key={language.name}>
+                      <dt>{language.name}</dt>
+                      <dd>{language.level}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             </section>
 
@@ -394,39 +392,21 @@ export default function App() {
             </section>
 
             <section
-              id="about"
-              className="section about"
-              aria-labelledby="about-heading"
+              id="education"
+              className="section"
+              aria-labelledby="education-heading"
             >
-              <h2 id="about-heading">More about me</h2>
-              <div className="about-columns">
-                <div className="about-personal">
-                  <p>{profile.about}</p>
-                  <p>{profile.personal}</p>
-                  <p className="interests">
-                    Interests: {profile.interests.join(', ')}.
-                  </p>
-                  <dl className="languages">
-                    {profile.languages.map((language) => (
-                      <div key={language.name}>
-                        <dt>{language.name}</dt>
-                        <dd>{language.level}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-                <div className="education">
-                  <h3>Education</h3>
-                  {education.map((item) => (
-                    <article key={item.school}>
-                      <h4>{item.school}</h4>
-                      <p>{item.degree}</p>
-                      <p className="education-detail">{item.detail}</p>
-                      <p className="education-coursework">{item.coursework}</p>
-                      <p className="entry-date">{item.period}</p>
-                    </article>
-                  ))}
-                </div>
+              <h2 id="education-heading">Education</h2>
+              <div className="education-grid">
+                {education.map((item) => (
+                  <article className="education-entry" key={item.school}>
+                    <h3>{item.school}</h3>
+                    <p>{item.degree}</p>
+                    <p className="education-detail">{item.detail}</p>
+                    <p className="education-coursework">{item.coursework}</p>
+                    <p className="entry-date">{item.period}</p>
+                  </article>
+                ))}
               </div>
               <details className="skills">
                 <summary>
@@ -448,7 +428,7 @@ export default function App() {
 
             <section className="contact" aria-labelledby="contact-heading">
               <h2 id="contact-heading">Contact</h2>
-              <p className="contact-availability">{profile.availability}</p>
+              {/* <p className="contact-availability">{profile.availability}</p> */}
               <p>Have something in mind? I’d be happy to hear from you.</p>
               <a href={`mailto:${profile.email}`}>{profile.email}</a>
             </section>

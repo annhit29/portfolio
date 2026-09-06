@@ -363,18 +363,8 @@ details[open] > summary .notes-indicator::after {
   display: inline-block;
   margin-top: 16px;
 }
-.enforcement-flow {
-  margin: 18px 0 0;
-}
-.enforcement-flow figcaption {
-  font-weight: 600;
-}
-.enforcement-flow ol {
-  margin: 7px 0 0;
-  padding-left: 18px;
-}
 #experience > h2,
-#about > h2 {
+#education > h2 {
   border-bottom: 1px solid var(--line);
   padding-bottom: 15px;
 }
@@ -413,66 +403,51 @@ details[open] > summary .notes-indicator::after {
   color: var(--muted);
   margin-top: 12px;
 }
-.about-columns {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 35px;
-  padding-top: 24px;
-}
-.about-personal {
+.bio-personal {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
   font-size: 13px;
 }
-.about-personal > p + p {
-  margin-top: 15px;
-}
-.interests {
-  color: var(--muted);
-  font-size: 12px;
-}
 .languages {
-  margin: 20px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 16px 0 0;
   font-size: 11px;
 }
 .languages > div {
   display: flex;
-  gap: 15px;
-}
-.languages dt {
-  min-width: 60px;
+  gap: 6px;
 }
 .languages dd {
   color: var(--muted);
   margin: 0;
 }
-.education {
-  border-left: 1px solid var(--line);
-  padding-left: 25px;
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  padding-top: 24px;
 }
-.education > h3 {
-  font: 12px/1.7 var(--mono);
-  margin-bottom: 17px;
+.education-entry h3 {
+  font-size: 14px;
+  margin-bottom: 7px;
 }
-.education article + article {
-  margin-top: 22px;
-}
-.education h4 {
-  font-size: 13px;
-  font-weight: 600;
-}
-.education p {
+.education-entry p {
   font-size: 12px;
 }
-.education .education-coursework {
+.education-entry .education-coursework {
   margin-top: 7px;
   font-size: 11px;
   color: var(--muted);
 }
-.education .education-detail,
-.education .entry-date {
+.education-entry .education-detail,
+.education-entry .entry-date {
   font-size: 11px;
   color: var(--muted);
 }
-.education .entry-date {
+.education-entry .entry-date {
   margin-top: 5px;
 }
 .skills {
@@ -601,15 +576,9 @@ details[open] > summary .notes-indicator::after {
     gap: 12px;
     padding-block: 22px;
   }
-  .about-columns {
+  .education-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
-  }
-  .education {
-    border-left: 0;
-    padding-left: 0;
-    border-top: 1px solid var(--line);
-    padding-top: 23px;
+    gap: 24px;
   }
 }
 @media (max-width: 360px) {
