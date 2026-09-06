@@ -282,162 +282,160 @@ export default function App() {
         Skip to content
       </a>
       <div className="portfolio-layout" id="top">
-        <header className="identity">
-          <h1>{profile.name}</h1>
-          <p className="identity-role">{profile.role}</p>
-          <p className="identity-focus">{profile.focus}</p>
-          <p className="identity-school">
-            <span>MSc Cyber Security</span> <span>ETH Zürich</span>
-          </p>
-          <div className="intro-links">
-            <ExternalLink href={profile.github}>GitHub</ExternalLink>
-            <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
-            <a href={`mailto:${profile.email}`}>Email</a>
-          </div>
-          <a
-            className="resume-link"
-            href={resumeUrl}
-            download="Wei-En-Hsieh-Resume.pdf"
+        <nav className="site-nav" aria-label="Main navigation">
+          <a href="#bio">Bio</a>
+          <span aria-hidden="true">/</span>
+          <a href="#projects">Projects</a>
+          <span aria-hidden="true">/</span>
+          <a href="#experience">Experience</a>
+          <span aria-hidden="true">/</span>
+          <a href="#education">Education</a>
+        </nav>
+        <main id="main" tabIndex={-1}>
+          <section
+            className="intro section"
+            id="bio"
+            aria-labelledby="identity-name"
           >
-            Download résumé <span aria-hidden="true">↗</span>
-          </a>
-        </header>
-        <div className="content-column">
-          <nav className="site-nav" aria-label="Main navigation">
-            <a href="#bio">Bio</a>
-            <span aria-hidden="true">/</span>
-            <a href="#projects">Projects</a>
-            <span aria-hidden="true">/</span>
-            <a href="#experience">Experience</a>
-            <span aria-hidden="true">/</span>
-            <a href="#education">Education</a>
-          </nav>
-          <main id="main" tabIndex={-1}>
-            <section
-              className="intro section"
-              id="bio"
-              aria-labelledby="intro-title"
-            >
-              <h2 id="intro-title">Bio</h2>
-              <div className="bio-content">
-                <p className="intro-greeting">Hi, I’m Wei-En.</p>
-                <p className="intro-text">{profile.introduction}</p>
-                <p className="bio-interests">
-                  Curious about{' '}
-                  {profile.interests.map((interest, index) => (
-                    <span key={interest}>
-                      {index > 0 &&
-                        (index === profile.interests.length - 1
-                          ? ', and '
-                          : ', ')}
-                      <span className="interest-name">{interest}</span>
-                    </span>
-                  ))}
-                  .
-                </p>
-                {/* <p className="bio-personal">{profile.personal}</p> */}
-                <dl className="languages">
-                  {profile.languages.map((language) => (
-                    <div key={language.name}>
-                      <dt>{language.name}</dt>
-                      <dd>{language.level}</dd>
+            <header className="identity">
+              <h1 id="identity-name">{profile.name}</h1>
+              <p className="identity-role">
+                {profile.role} <span aria-hidden="true">·</span>{' '}
+                <span className="identity-focus">{profile.focus}</span>
+              </p>
+              <p className="identity-school">MSc Cyber Security · ETH Zürich</p>
+            </header>
+            <div className="bio-content">
+              <p className="intro-text">{profile.introduction}</p>
+              <p className="bio-interests">
+                Curious about{' '}
+                {profile.interests.map((interest, index) => (
+                  <span key={interest}>
+                    {index > 0 &&
+                      (index === profile.interests.length - 1
+                        ? ', and '
+                        : ', ')}
+                    <span className="interest-name">{interest}</span>
+                  </span>
+                ))}
+                .
+              </p>
+              {/* <p className="bio-personal">{profile.personal}</p> */}
+              <dl className="languages">
+                {profile.languages.map((language) => (
+                  <div key={language.name}>
+                    <dt>{language.name}</dt>
+                    <dd>{language.level}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="hero-actions">
+                <a
+                  className="resume-link"
+                  href={resumeUrl}
+                  download="Wei-En-Hsieh-Resume.pdf"
+                >
+                  Download résumé <span aria-hidden="true">↗</span>
+                </a>
+                <div className="intro-links">
+                  <ExternalLink href={profile.github}>GitHub</ExternalLink>
+                  <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
+                  <a href={`mailto:${profile.email}`}>Email</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section
+            id="projects"
+            className="section"
+            aria-labelledby="projects-heading"
+          >
+            <div className="section-heading">
+              <h2 id="projects-heading">Projects</h2>
+              <span className="section-aside">Selected work</span>
+            </div>
+            <div className="project-grid">
+              {projects.map((project) => (
+                <ProjectEntry key={project.id} project={project} />
+              ))}
+            </div>
+          </section>
+
+          <section
+            id="experience"
+            className="section"
+            aria-labelledby="experience-heading"
+          >
+            <h2 id="experience-heading">Experience</h2>
+            {experience.map((job) => (
+              <article className="experience-entry" key={job.company}>
+                <div>
+                  <h3>{job.company}</h3>
+                  <p className="entry-date">{job.period}</p>
+                  <p className="entry-location">{job.location}</p>
+                </div>
+                <div>
+                  <h4>{job.role}</h4>
+                  {job.points.length > 0 && (
+                    <ul>
+                      {job.points.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <p className="project-tools">{job.technologies}</p>
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <section
+            id="education"
+            className="section"
+            aria-labelledby="education-heading"
+          >
+            <h2 id="education-heading">Education</h2>
+            <div className="education-grid">
+              {education.map((item) => (
+                <article className="education-entry" key={item.school}>
+                  <h3>{item.school}</h3>
+                  <p>{item.degree}</p>
+                  <p className="education-detail">{item.detail}</p>
+                  <p className="education-coursework">{item.coursework}</p>
+                  <p className="entry-date">{item.period}</p>
+                </article>
+              ))}
+            </div>
+            <details className="skills">
+              <summary>
+                Languages & tools I’ve used
+                <span className="notes-indicator" aria-hidden="true" />
+              </summary>
+              <div className="engineering-notes">
+                <dl>
+                  {skills.map((skill) => (
+                    <div key={skill.area}>
+                      <dt>{skill.area}</dt>
+                      <dd>{skill.items}</dd>
                     </div>
                   ))}
                 </dl>
               </div>
-            </section>
+            </details>
+          </section>
 
-            <section
-              id="projects"
-              className="section"
-              aria-labelledby="projects-heading"
-            >
-              <div className="section-heading">
-                <h2 id="projects-heading">Projects</h2>
-                <span className="section-aside">Selected work</span>
-              </div>
-              <div className="project-grid">
-                {projects.map((project) => (
-                  <ProjectEntry key={project.id} project={project} />
-                ))}
-              </div>
-            </section>
-
-            <section
-              id="experience"
-              className="section"
-              aria-labelledby="experience-heading"
-            >
-              <h2 id="experience-heading">Experience</h2>
-              {experience.map((job) => (
-                <article className="experience-entry" key={job.company}>
-                  <div>
-                    <h3>{job.company}</h3>
-                    <p className="entry-date">{job.period}</p>
-                    <p className="entry-location">{job.location}</p>
-                  </div>
-                  <div>
-                    <h4>{job.role}</h4>
-                    {job.points.length > 0 && (
-                      <ul>
-                        {job.points.map((point) => (
-                          <li key={point}>{point}</li>
-                        ))}
-                      </ul>
-                    )}
-                    <p className="project-tools">{job.technologies}</p>
-                  </div>
-                </article>
-              ))}
-            </section>
-
-            <section
-              id="education"
-              className="section"
-              aria-labelledby="education-heading"
-            >
-              <h2 id="education-heading">Education</h2>
-              <div className="education-grid">
-                {education.map((item) => (
-                  <article className="education-entry" key={item.school}>
-                    <h3>{item.school}</h3>
-                    <p>{item.degree}</p>
-                    <p className="education-detail">{item.detail}</p>
-                    <p className="education-coursework">{item.coursework}</p>
-                    <p className="entry-date">{item.period}</p>
-                  </article>
-                ))}
-              </div>
-              <details className="skills">
-                <summary>
-                  Languages & tools I’ve used
-                  <span className="notes-indicator" aria-hidden="true" />
-                </summary>
-                <div className="engineering-notes">
-                  <dl>
-                    {skills.map((skill) => (
-                      <div key={skill.area}>
-                        <dt>{skill.area}</dt>
-                        <dd>{skill.items}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              </details>
-            </section>
-
-            <section className="contact" aria-labelledby="contact-heading">
-              <h2 id="contact-heading">Contact</h2>
-              {/* <p className="contact-availability">{profile.availability}</p> */}
-              <p>Have something in mind? I’d be happy to hear from you.</p>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            </section>
-          </main>
-          <footer className="site-footer">
-            <p>{profile.name}</p>
-            <a href="#top">Back to top</a>
-          </footer>
-        </div>
+          <section className="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact</h2>
+            {/* <p className="contact-availability">{profile.availability}</p> */}
+            <p>Have something in mind? I’d be happy to hear from you.</p>
+            <a href={`mailto:${profile.email}`}>{profile.email}</a>
+          </section>
+        </main>
+        <footer className="site-footer">
+          <p>{profile.name}</p>
+          <a href="#top">Back to top</a>
+        </footer>
       </div>
     </>
   );
