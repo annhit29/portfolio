@@ -231,7 +231,12 @@ function ProjectEntry({ project }: { project: Project }) {
           <p className="project-summary">{project.summary}</p>
           <p>{project.contribution}</p>
           <p className="project-result">
-            <strong>{project.metric}</strong> {project.metricLabel}.{' '}
+            <strong>{project.metric}</strong> {project.metricLabel}{' '}
+            {project.secondaryMetric && (
+              <>
+                <strong>{project.secondaryMetric}</strong>.{' '}
+              </>
+            )}
             <span>{project.metricContext}</span>
           </p>
           <ul className="technology-list" aria-label="Technologies">

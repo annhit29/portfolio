@@ -8,6 +8,7 @@ export interface Project {
   technologies: string[];
   metric: string;
   metricLabel: string;
+  secondaryMetric?: string;
   metricContext: string;
   repository: { url: string; available: boolean };
   details: { title: string; text: string }[];
@@ -92,8 +93,8 @@ export const projects: Project[] = [
     technologies: ['C', 'AVX', 'Linux', 'perf'],
     metric: '13×',
     metricLabel: 'reported speedup',
-    metricContext:
-      '7+ operations per CPU cycle. Speedup over the project baseline.',
+    secondaryMetric: '7+ ops/CPU cycle',
+    metricContext: 'Speedup over the project baseline.',
     repository: {
       url: 'https://github.com/annhit29/TextureSynthesisAlgoOptimization/tree/timing',
       available: true,
@@ -119,12 +120,11 @@ export const projects: Project[] = [
     summary:
       'An Android app for planning trips with a group, built as a team project at EPFL.',
     contribution:
-      'Features and services for authentication, payments, data synchronization, and group coordination.',
-    technologies: ['Kotlin', 'Jetpack Compose', 'Firebase', 'GitHub Actions'],
-    metric: '≈90%',
-    metricLabel: 'automated test coverage',
-    metricContext:
-      'Unit and Android integration tests automated through GitHub Actions.',
+      'I implemented real-time suggestion search, sorting, and role-based 24-hour voting with state persisted in Firestore. I built majority-based itinerary updates and agenda state tracking.',
+    technologies: ['Kotlin', 'Jetpack Compose', 'Firebase'],
+    metric: '93%+',
+    metricLabel: 'new-code coverage',
+    metricContext: 'for the itinerary updates and agenda state tracking.',
     repository: {
       url: 'https://github.com/WanderPals/WanderPals',
       available: true,
