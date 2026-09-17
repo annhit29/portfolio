@@ -153,7 +153,7 @@ export const experience = [
     technologies: 'Python · Camunda · BPMN · REST APIs',
     points: [
       'Automated an end-to-end Camunda workflow handling 30–50 mobile-network complaints per day, leaving only 2 manual exception paths.',
-      'Orchestrated 4 APIs with 15 calls per complaint, retries, reusable components, and Gemini-based report analysis.',
+      'Integrated 4 APIs with 15 calls per complaint, retries, reusable components, and Gemini-based report analysis.',
       'Owned delivery from telecom-expert requirements to production, translating them into validated BPMN workflows.',
     ],
   },
