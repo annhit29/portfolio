@@ -10,7 +10,7 @@ export interface Project {
   metricLabel: string;
   secondaryMetric?: string;
   metricContext: string;
-  repository: { url: string; available: boolean };
+  links: { label: string; url: string }[];
   details: { title: string; text: string }[];
   evidence: { label: string; url: string }[];
 }
@@ -22,11 +22,12 @@ export const profile = {
   description:
     'Wei-En Hsieh, software engineer and MSc Cyber Security student at ETH Zürich. Selected work in privacy enforcement, performance optimization, and application development.',
   introduction:
-    'I build software for privacy enforcement, workflow automation, and applications, with a focus on how systems behave in practice.',
+    'I build software where security, reliability, and performance meet—from runtime policy enforcement to cloud scheduling and systems optimization.',
   // availability: 'Available full-time from July 2027 for 13–17 weeks.',
   email: 'ann20010929@gmail.com',
   github: 'https://github.com/annhit29',
   linkedin: 'https://www.linkedin.com/in/wei-en-hsieh/',
+  orcid: 'https://orcid.org/0009-0004-1815-1015',
   resumeFile: 'resume.pdf',
   interests: [
     'LLM security',
@@ -34,7 +35,7 @@ export const profile = {
     'privacy engineering',
   ],
   // personal:
-    // 'From July to September 2024, I volunteered in Sport Info & Administration at the Paris Olympic and Paralympic Games.',
+  // 'From July to September 2024, I volunteered in Sport Info & Administration at the Paris Olympic and Paralympic Games.',
   languages: [
     { name: 'Mandarin', level: 'Native' },
     { name: 'French', level: 'Bilingual' },
@@ -54,13 +55,16 @@ export const projects: Project[] = [
     contribution:
       'I built the file system, added page- and row-level redaction when consent is revoked, and wrote Lex mappings between file-system events and GDPR concepts. I co-authored “Lex: Turning Laws into Enforceable Security Policies,” accepted at ACM CCS 2026, and contributed the GDPRFS case study.',
     technologies: ['Python', 'FUSE', 'Flask', 'SQLAlchemy'],
-    metric: '0–80 ms',
-    metricLabel: 'reported enforcement overhead',
-    metricContext: 'Across 100–10,000 files. Excludes LLM inference.',
-    repository: {
-      url: 'https://github.com/annhit29/GDPR-compliant_FS',
-      available: true,
-    },
+    metric: '67–79 ms',
+    metricLabel: 'instrumented read latency',
+    metricContext:
+      'Measured across 100–10,000 files over 20 runs; this is read latency, not aggregate enforcement overhead or LLM inference time.',
+    links: [
+      {
+        label: 'Source code',
+        url: 'https://github.com/annhit29/GDPR-compliant_FS',
+      },
+    ],
     details: [
       {
         title: 'Implementation',
@@ -72,7 +76,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Benchmark context',
-        text: 'The repository also measures multi-step workflows separately from the enforcement overhead shown above.',
+        text: 'Repository benchmarks separately measure complete, multi-step GDPR workflows. For example, the documented enforcer-only cost is 1.52 s across a 17-step Articles 5/6 workflow; that aggregate is not the read-latency figure above.',
       },
     ],
     evidence: [
@@ -81,6 +85,28 @@ export const projects: Project[] = [
         url: 'https://github.com/annhit29/GDPR-compliant_FS/blob/main/gdprfs/README.md',
       },
     ],
+  },
+  {
+    id: 'cloud',
+    category: 'Cloud systems / Reliability',
+    date: 'Feb — May 2025',
+    title: 'Cloud Scheduling & Reliability',
+    summary:
+      'A Kubernetes scheduler and CPU controller for keeping latency-sensitive services within their SLO while sharing machines with batch workloads.',
+    contribution:
+      'I built the interface-aware scheduler and a 100 ms adaptive controller that reallocates CPU cores between memcached and seven PARSEC workloads.',
+    technologies: ['Python', 'Kubernetes', 'Docker', 'Google Cloud'],
+    metric: '0%',
+    metricLabel: 'SLO violations',
+    metricContext: 'Across three runs under a dynamic 5K–180K QPS workload.',
+    links: [
+      {
+        label: 'Source code',
+        url: 'https://github.com/annhit29/CloudComputingArchitecture2025',
+      },
+    ],
+    details: [],
+    evidence: [],
   },
   {
     id: 'texture',
@@ -95,10 +121,12 @@ export const projects: Project[] = [
     metricLabel: 'reported speedup',
     secondaryMetric: '7+ ops/CPU cycle',
     metricContext: 'Speedup over the project baseline.',
-    repository: {
-      url: 'https://github.com/annhit29/TextureSynthesisAlgoOptimization/tree/timing',
-      available: true,
-    },
+    links: [
+      {
+        label: 'Source code',
+        url: 'https://github.com/annhit29/TextureSynthesisAlgoOptimization/tree/timing',
+      },
+    ],
     details: [
       {
         title: 'Measurement & correctness',
@@ -112,6 +140,31 @@ export const projects: Project[] = [
       },
     ],
   },
+];
+
+export const additionalProjects: Project[] = [
+  {
+    id: 'certificate-authority',
+    category: 'Security engineering',
+    date: 'Sep — Dec 2025',
+    title: 'Secure Certificate Authority',
+    summary:
+      'A certificate authority covering issuance, revocation, certificate revocation lists, mTLS trust boundaries, and encrypted backups.',
+    contribution:
+      'I implemented the CA workflows and engineered two controlled adversarial backdoors to study privilege escalation and certificate forgery.',
+    technologies: ['Python', 'Bash', 'SQL', 'Docker', 'Kathará'],
+    metric: '2',
+    metricLabel: 'controlled attack scenarios',
+    metricContext: 'Privilege escalation and certificate forgery.',
+    links: [
+      {
+        label: 'Source code',
+        url: 'https://github.com/annhit29/AppliedSecurityLab-PKI',
+      },
+    ],
+    details: [],
+    evidence: [],
+  },
   {
     id: 'wanderpals',
     category: 'Application engineering / Team project',
@@ -124,25 +177,36 @@ export const projects: Project[] = [
     technologies: ['Kotlin', 'Jetpack Compose', 'Firebase'],
     metric: '93%+',
     metricLabel: 'new-code coverage',
-    metricContext: 'for the itinerary updates and agenda state tracking.',
-    repository: {
-      url: 'https://github.com/WanderPals/WanderPals',
-      available: true,
-    },
+    metricContext: 'For the itinerary updates and agenda state tracking.',
+    links: [
+      { label: 'Source code', url: 'https://github.com/WanderPals/WanderPals' },
+    ],
     details: [],
     evidence: [],
   },
 ];
 
+export const publication = {
+  title: 'Lex: Turning Laws into Enforceable Security Policies',
+  venue: 'ACM Conference on Computer and Communications Security (CCS), 2026',
+  status: 'Accepted',
+  authors:
+    'F. Hublet, J. Merane, J. Degelo, Wei-En Hsieh, S. Krstić, and D. Basin',
+  contribution:
+    'I contributed the GDPRFS case study: a FUSE-based system that maps file-system events to GDPR concepts through Lex refinements and enforces the resulting policies at runtime.',
+  links: [] as { label: string; url: string }[],
+};
+
 export const experience = [
   {
     company: 'ETH Zürich · Information Security Group',
-    role: 'Incoming Research Assistant',
-    period: 'Oct 2026 — Feb 2027',
+    role: 'Research Assistant · Lex AutoCompliance Platform',
+    period: 'Oct 2026 — Present',
     location: 'Zurich, Switzerland',
-    technologies: 'Python',
+    technologies: 'Python · MFOTL · EnfGuard',
     points: [
-      'Selected to build an LLM-powered pipeline for automated Python instrumentation and compliance auditing.',
+      'Developing an LLM-agent pipeline to automate policy refinement and Python instrumentation for runtime enforcement.',
+      'Designing benchmarks to measure agent correctness, execution time, cost, and human re-audit effort.',
     ],
   },
   {
@@ -204,11 +268,20 @@ export const education = [
 export const skills = [
   {
     area: 'Programming',
-    items: 'Python, C, C++, Java, JavaScript, TypeScript, Kotlin, SQL',
+    items: 'Python, C, C++, Java, Scala, JavaScript, TypeScript, Kotlin, SQL',
   },
   {
-    area: 'Technologies',
+    area: 'Systems & Cloud',
     items:
-      'Linux/Unix, Docker, Git, GitHub Actions, Bash, React.js, Node.js, Flask, MySQL, Firebase',
+      'Linux/Unix, Kubernetes, Docker, Google Cloud, Git, GitHub Actions, Camunda, Bash',
+  },
+  {
+    area: 'Security & Formal Methods',
+    items:
+      'PKI, TLS/mTLS, MFOTL, EnfGuard, Lex, runtime enforcement, privacy engineering',
+  },
+  {
+    area: 'Application Development',
+    items: 'React, Node.js, Flask, REST APIs, MySQL, SQLAlchemy, Firebase',
   },
 ];

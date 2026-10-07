@@ -238,6 +238,10 @@ h2 {
 .project-art--texture {
   background: #f0ebf3;
 }
+.project-art--cloud,
+.project-art--certificate-authority {
+  background: #eaf0ed;
+}
 .project-art--wanderpals {
   background: #edf2f3;
 }
@@ -248,7 +252,8 @@ h2 {
   position: relative;
   margin-bottom: 13px;
 }
-h3 {
+h3,
+.project-heading h4 {
   font-size: 20px;
   font-weight: 550;
   letter-spacing: -0.5px;
@@ -276,6 +281,10 @@ h3 {
 .project-content > p:not(.project-summary) {
   font-size: 12px;
   color: var(--muted);
+}
+.project-content > p strong {
+  color: #303631;
+  font-weight: 600;
 }
 .project-result {
   border-left: 2px solid #b6c8ac;
@@ -308,8 +317,43 @@ h3 {
   padding: 2px 7px;
 }
 .project-source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
   margin-top: 17px;
   font: 11px/1.8 var(--mono);
+}
+.additional-heading {
+  margin-top: 34px;
+}
+.additional-heading h3 {
+  font: 13px/1.6 var(--mono);
+  font-weight: 500;
+}
+.additional-projects .project-entry--wanderpals,
+.additional-projects .project-entry--certificate-authority {
+  grid-column: auto;
+}
+.publication-entry {
+  border-block: 1px solid var(--line);
+  padding: 24px 0;
+}
+.publication-entry h3 {
+  margin-top: 5px;
+}
+.publication-entry > p:last-of-type {
+  max-width: 76ch;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.publication-venue,
+.publication-authors {
+  font: 10px/1.8 var(--mono);
+  color: var(--muted);
+}
+.publication-authors {
+  margin-top: 7px;
 }
 .project-source a::after {
   content: ' ↗';

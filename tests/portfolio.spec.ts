@@ -16,10 +16,18 @@ test('loads the portfolio and its assets without errors', async ({
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
     'Wei-En Hsieh',
   );
-  await expect(page.locator('.project-entry')).toHaveCount(3);
+  await expect(page.locator('.project-entry')).toHaveCount(5);
   await expect(page.locator('.project-result').first()).toContainText(
-    'Excludes LLM inference',
+    'read latency, not aggregate enforcement overhead',
   );
+  await expect(
+    page.getByRole('heading', { name: 'Publications' }),
+  ).toBeVisible();
+  await expect(
+    page.getByText(
+      'ACM Conference on Computer and Communications Security (CCS), 2026',
+    ),
+  ).toBeVisible();
   const pdfUrl = await page
     .getByRole('link', { name: 'Download résumé' })
     .getAttribute('href');

@@ -2,8 +2,10 @@ import type { ReactNode } from 'react';
 import {
   education,
   experience,
+  additionalProjects,
   profile,
   projects,
+  publication,
   skills,
   type Project,
 } from './data/portfolio';
@@ -120,6 +122,31 @@ function ProjectArtwork({ id }: { id: string }) {
             enforced result
           </text>
         </svg>
+      ) : id === 'cloud' ? (
+        <svg viewBox="0 0 350 180" fill="none">
+          <path d="M34 132h282" stroke="#a7b7b1" />
+          <path
+            d="M48 118 95 91l45 13 48-55 45 31 68-42"
+            stroke="#52725a"
+            strokeWidth="3"
+          />
+          <path
+            d="M48 128V77m63 51V61m63 67V85m63 43V51m63 77V68"
+            stroke="#b9c8c1"
+            strokeDasharray="4 5"
+          />
+          <circle cx="188" cy="49" r="6" fill="#52725a" />
+          <text
+            x="175"
+            y="159"
+            textAnchor="middle"
+            fill="#536c5b"
+            fontSize="11"
+            fontFamily="monospace"
+          >
+            adaptive scheduling
+          </text>
+        </svg>
       ) : id === 'texture' ? (
         <svg viewBox="0 0 350 180" fill="none">
           <defs>
@@ -159,6 +186,22 @@ function ProjectArtwork({ id }: { id: string }) {
             rx="4"
             fill="url(#texture-tile)"
             stroke="#ac95b5"
+          />
+        </svg>
+      ) : id === 'certificate-authority' ? (
+        <svg viewBox="0 0 350 180" fill="none">
+          <path
+            d="m175 31 49 19v37c0 33-49 61-49 61s-49-28-49-61V50l49-19Z"
+            fill="#e1e9e2"
+            stroke="#6c8b72"
+            strokeWidth="2"
+          />
+          <circle cx="175" cy="79" r="15" fill="#fafcf9" stroke="#6c8b72" />
+          <path
+            d="M175 94v25m0-10h18m-18 0-12 12"
+            stroke="#6c8b72"
+            strokeWidth="3"
+            strokeLinecap="round"
           />
         </svg>
       ) : (
@@ -214,7 +257,15 @@ function ProjectArtwork({ id }: { id: string }) {
   );
 }
 
-function ProjectEntry({ project }: { project: Project }) {
+function ProjectEntry({
+  project,
+  nested = false,
+}: {
+  project: Project;
+  nested?: boolean;
+}) {
+  const ProjectTitle = nested ? 'h4' : 'h3';
+
   return (
     <article
       className={`project-entry project-entry--${project.id}`}
@@ -224,12 +275,18 @@ function ProjectEntry({ project }: { project: Project }) {
       <div className="project-body">
         <div className="project-heading">
           <p className="entry-date">{project.date}</p>
-          <h3 id={`${project.id}-title`}>{project.title}</h3>
+          <ProjectTitle id={`${project.id}-title`}>
+            {project.title}
+          </ProjectTitle>
           <p className="project-kind">{project.category}</p>
         </div>
         <div className="project-content">
-          <p className="project-summary">{project.summary}</p>
-          <p>{project.contribution}</p>
+          <p className="project-summary">
+            <strong>Problem.</strong> {project.summary}
+          </p>
+          <p>
+            <strong>My contribution.</strong> {project.contribution}
+          </p>
           <p className="project-result">
             <strong>{project.metric}</strong> {project.metricLabel}{' '}
             {project.secondaryMetric && (
@@ -244,13 +301,16 @@ function ProjectEntry({ project }: { project: Project }) {
               <li key={technology}>{technology}</li>
             ))}
           </ul>
-          <div className="project-source">
-            {project.repository.available ? (
-              <ExternalLink href={project.repository.url}>
-                Source code<span className="sr-only"> for {project.title}</span>
-              </ExternalLink>
+          <div className="project-source" aria-label={`${project.title} links`}>
+            {project.links.length > 0 ? (
+              project.links.map((link) => (
+                <ExternalLink key={link.url} href={link.url}>
+                  {link.label}
+                  <span className="sr-only"> for {project.title}</span>
+                </ExternalLink>
+              ))
             ) : (
-              <span>Repository not publicly available</span>
+              <span>No public code or demo available</span>
             )}
           </div>
           {project.details.length > 0 && (
@@ -291,6 +351,8 @@ export default function App() {
           <a href="#bio">Bio</a>
           <span aria-hidden="true">/</span>
           <a href="#projects">Projects</a>
+          <span aria-hidden="true">/</span>
+          <a href="#publications">Publications</a>
           <span aria-hidden="true">/</span>
           <a href="#experience">Experience</a>
           <span aria-hidden="true">/</span>
@@ -345,6 +407,7 @@ export default function App() {
                 <div className="intro-links">
                   <ExternalLink href={profile.github}>GitHub</ExternalLink>
                   <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
+                  <ExternalLink href={profile.orcid}>ORCID</ExternalLink>
                   <a href={`mailto:${profile.email}`}>Email</a>
                 </div>
               </div>
@@ -365,6 +428,45 @@ export default function App() {
                 <ProjectEntry key={project.id} project={project} />
               ))}
             </div>
+            <section
+              className="additional-projects-section"
+              aria-labelledby="additional-projects-heading"
+            >
+              <div className="section-heading additional-heading">
+                <h3 id="additional-projects-heading">Additional projects</h3>
+              </div>
+              <div className="project-grid additional-projects">
+                {additionalProjects.map((project) => (
+                  <ProjectEntry key={project.id} project={project} nested />
+                ))}
+              </div>
+            </section>
+          </section>
+
+          <section
+            id="publications"
+            className="section"
+            aria-labelledby="publications-heading"
+          >
+            <div className="section-heading">
+              <h2 id="publications-heading">Publications</h2>
+              <span className="section-aside">{publication.status}</span>
+            </div>
+            <article className="publication-entry">
+              <p className="publication-venue">{publication.venue}</p>
+              <h3>{publication.title}</h3>
+              <p className="publication-authors">{publication.authors}</p>
+              <p>{publication.contribution}</p>
+              {publication.links.length > 0 && (
+                <div className="project-source">
+                  {publication.links.map((link) => (
+                    <ExternalLink key={link.url} href={link.url}>
+                      {link.label}
+                    </ExternalLink>
+                  ))}
+                </div>
+              )}
+            </article>
           </section>
 
           <section
