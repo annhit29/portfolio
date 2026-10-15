@@ -194,7 +194,12 @@ export const publication = {
     'F. Hublet, J. Merane, J. Degelo, Wei-En Hsieh, S. Krstić, and D. Basin',
   contribution:
     'I contributed the GDPRFS case study: a FUSE-based system that maps file-system events to GDPR concepts through Lex refinements and enforces the resulting policies at runtime.',
-  links: [] as { label: string; url: string }[],
+  links: [
+    {
+      label: 'CCS 2026 accepted papers',
+      url: 'https://www.sigsac.org/ccs/CCS2026/program/accepted-papers.html',
+    },
+  ],
 };
 
 export const experience = [

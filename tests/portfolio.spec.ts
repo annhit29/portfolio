@@ -28,6 +28,12 @@ test('loads the portfolio and its assets without errors', async ({
       'ACM Conference on Computer and Communications Security (CCS), 2026',
     ),
   ).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'CCS 2026 accepted papers' }),
+  ).toHaveAttribute(
+    'href',
+    'https://www.sigsac.org/ccs/CCS2026/program/accepted-papers.html',
+  );
   const pdfUrl = await page
     .getByRole('link', { name: 'Download résumé' })
     .getAttribute('href');
