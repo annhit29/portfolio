@@ -196,7 +196,7 @@ export const publication = {
     'I contributed the GDPRFS case study: a FUSE-based system that maps file-system events to GDPR concepts through Lex refinements and enforces the resulting policies at runtime.',
   links: [
     {
-      label: 'CCS 2026 accepted papers',
+      label: 'ACM CCS 2026 accepted papers',
       url: 'https://www.sigsac.org/ccs/CCS2026/program/accepted-papers.html',
     },
   ],
