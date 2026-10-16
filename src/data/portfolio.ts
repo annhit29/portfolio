@@ -194,10 +194,12 @@ export const publication = {
     'F. Hublet, J. Merane, J. Degelo, Wei-En Hsieh, S. Krstić, and D. Basin',
   contribution:
     'I contributed the GDPRFS case study: a FUSE-based system that maps file-system events to GDPR concepts through Lex refinements and enforces the resulting policies at runtime.',
+  abstract:
+    'Digital regulations such as the GDPR suffer from a major implementation gap. Compliance by Design—building software systems that satisfy legal requirements by construction—offers a promising solution, but currently lacks formal foundations and scalable tools. We present an end-to-end, mechanized approach to Compliance by Design that translates complex digital regulations into software security mechanisms. At its core is Lex, a novel formal language tailored to the structure of legal texts. Lex supports the formalization of legal provisions and their refinement to concrete system requirements. The Lex compiler then translates the refined requirements into enforceable temporal-logic policies compatible with existing runtime enforcement and instrumentation tools. We evaluate our approach by formalizing system-related provisions of the GDPR in about 3,200 lines of Lex code and refining this specification for two Python applications. Our methodology ensures compliance with the formalized provisions with modest runtime and development overhead. A user study provides evidence of Lex’s understandability in reading and auditing tasks for participants from legal and computer science backgrounds. To the best of our knowledge, this is the first end-to-end, mechanized, and rigorous approach for developing applications that verifiably comply with formal specifications derived from complex digital regulations.',
   links: [
     {
-      label: 'ACM CCS 2026 accepted papers',
-      url: 'https://www.sigsac.org/ccs/CCS2026/program/accepted-papers.html',
+      label: 'Read paper (PDF)',
+      url: 'ccs26-lex.pdf',
     },
   ],
 };

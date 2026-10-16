@@ -29,11 +29,21 @@ test('loads the portfolio and its assets without errors', async ({
     ),
   ).toBeVisible();
   await expect(
-    page.getByRole('link', { name: 'CCS 2026 accepted papers' }),
-  ).toHaveAttribute(
-    'href',
-    'https://www.sigsac.org/ccs/CCS2026/program/accepted-papers.html',
-  );
+    page.getByRole('heading', { name: 'Abstract', level: 4 }),
+  ).toBeVisible();
+  const paperLink = page.getByRole('link', { name: 'Read paper (PDF)' });
+  await expect(paperLink).toHaveAttribute('href', 'ccs26-lex.pdf');
+  const abstractPrecedesPaperLink = await page
+    .locator('.publication-abstract')
+    .evaluate((element) =>
+      element.nextElementSibling?.classList.contains('project-source'),
+    );
+  expect(abstractPrecedesPaperLink).toBe(true);
+  const paperUrl = await paperLink.getAttribute('href');
+  const paper = await request.get(new URL(paperUrl!, page.url()).href);
+  expect(paper.ok()).toBe(true);
+  expect(paper.headers()['content-type']).toContain('application/pdf');
+  expect((await paper.body()).subarray(0, 5).toString()).toBe('%PDF-');
   const pdfUrl = await page
     .getByRole('link', { name: 'Download résumé' })
     .getAttribute('href');

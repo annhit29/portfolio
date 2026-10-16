@@ -456,7 +456,13 @@ export default function App() {
               <p className="publication-venue">{publication.venue}</p>
               <h3>{publication.title}</h3>
               <p className="publication-authors">{publication.authors}</p>
-              <p>{publication.contribution}</p>
+              <p className="publication-contribution">
+                {publication.contribution}
+              </p>
+              <div className="publication-abstract">
+                <h4>Abstract</h4>
+                <p>{publication.abstract}</p>
+              </div>
               {publication.links.length > 0 && (
                 <div className="project-source">
                   {publication.links.map((link) => (

@@ -341,9 +341,24 @@ h3,
 .publication-entry h3 {
   margin-top: 5px;
 }
-.publication-entry > p:last-of-type {
+.publication-contribution {
   max-width: 76ch;
   margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.publication-abstract {
+  max-width: 76ch;
+  margin-top: 20px;
+}
+.publication-abstract h4 {
+  margin-bottom: 6px;
+  font: 600 11px/1.8 var(--mono);
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.publication-abstract p {
   color: var(--muted);
   font-size: 12px;
 }
